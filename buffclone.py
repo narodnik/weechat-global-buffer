@@ -21,7 +21,9 @@ def on_print(data, buffer, date, tags, displayed, highlight, prefix, message):
     # Get nick
     tags = tags.split(",")
     nicks = [tag for tag in tags if tag.startswith("nick_")]
-    assert len(nicks) == 1
+    # Ignore non-messages
+    if len(nicks) != 1:
+        return weechat.WEECHAT_RC_OK
     nick = nicks[0].removeprefix("nick_")
 
     weechat.prnt(buff, f"{channel} <{nick}> {message}")
