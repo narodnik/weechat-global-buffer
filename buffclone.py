@@ -26,6 +26,10 @@ def on_print(data, buffer, date, tags, displayed, highlight, prefix, message):
         return weechat.WEECHAT_RC_OK
     nick = nicks[0].removeprefix("nick_")
 
-    weechat.prnt(buff, f"{channel} <{nick}> {message}")
+    buffstr = f"{channel}" + (20 - len(channel))*" "
+    buffstr += f"<{nick}>" + (18 - len(nick))*" "
+    buffstr += f"{message}"
+
+    weechat.prnt(buff, buffstr)
     return weechat.WEECHAT_RC_OK
 
