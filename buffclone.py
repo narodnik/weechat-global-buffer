@@ -17,6 +17,9 @@ def on_print(data, buffer, date, tags, displayed, highlight, prefix, message):
     channel = weechat.buffer_get_string(buffer, "name")
     if channel.startswith("darkfi."):
         channel = channel.removeprefix("darkfi.")
+    else:
+        # Ignore other channels. Too much noise.
+        return weechat.WEECHAT_RC_OK
 
     # Get nick
     tags = tags.split(",")
