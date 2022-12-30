@@ -1,0 +1,3 @@
+drop in .local/share/weechat/python/autoload/
+make sure path is correct and it's executable
+

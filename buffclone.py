@@ -1,4 +1,4 @@
-# Drop this in .weechat/python/autoload/
+# Drop this in .local/share/weechat/python/autoload/
 import weechat
 
 weechat.register("buffclone", "narodnik", "1.0", "GPL3",
@@ -19,6 +19,9 @@ def on_print(data, buffer, date, tags, displayed, highlight, prefix, message):
         channel = channel.removeprefix("darkfi.")
     else:
         # Ignore other channels. Too much noise.
+        return weechat.WEECHAT_RC_OK
+
+    if channel.startswith("#lunardao"):
         return weechat.WEECHAT_RC_OK
 
     # Get nick
